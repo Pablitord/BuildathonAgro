@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ReplanRequestSchema } from "@/lib/schemas";
-import { cancelarCompradorYReplanificar } from "@/lib/agent";
+import { replanificarOperacionActual } from "@/lib/serverless-operations";
 
 export async function POST(request: Request) {
   try {
@@ -13,10 +13,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const operacion = cancelarCompradorYReplanificar(
-      parsed.data.operacion_id,
-      parsed.data.comprador_id,
-    );
+    const operacion = replanificarOperacionActual(parsed.data.operacion, parsed.data.comprador_id);
     return NextResponse.json({ operacion });
   } catch (error) {
     console.error(error);

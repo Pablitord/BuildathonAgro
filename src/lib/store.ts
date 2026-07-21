@@ -12,7 +12,8 @@ function getMap(): Map<string, Operacion> {
 }
 
 export function saveOperacion(op: Operacion): void {
-  getMap().set(op.id, op);
+  // La demo serverless no persiste operaciones en memoria; el cliente conserva la sesión.
+  void op;
 }
 
 export function getOperacion(id: string): Operacion | undefined {

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import examples from "@/data/examples.json";
 import { Leaf, Loader2, Sparkles } from "lucide-react";
 
-const CASO_MARIA = examples.caso_maria.texto;
+const CASO_DEMOSTRACION = examples.caso_demostracion.texto;
 
 type Props = {
   texto: string;
@@ -98,7 +98,7 @@ export function RegisterHarvest({ texto, onTextoChange, onPlanReady, onLoadingCh
           <Button
             type="button"
             variant="outline"
-            onClick={() => onTextoChange(CASO_MARIA)}
+            onClick={() => onTextoChange(CASO_DEMOSTRACION)}
             disabled={loading}
           >
             Cargar caso María

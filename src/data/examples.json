@@ -1,12 +1,15 @@
 {
-  "caso_maria": {
-    "productora": "María González",
-    "texto": "Hola, soy María González de la finca El Roble en Marinilla, Antioquia. Acabo de cosechar 900 kg de tomate maduro listo para venta. Necesito moverlos rápido porque maduran en menos de un día.",
+  "caso_demostracion": {
+    "productora": "María Zambrano",
+    "texto": "Soy María Zambrano, productora de Rocafuerte, Manabí, Ecuador. Tengo 900 kilos de tomate maduro recién cosechado. Necesito venderlo antes de mañana porque puede perder calidad. No tengo transporte propio y acepto un precio mínimo de $0,25 por kilogramo.",
     "esperado": {
       "producto": "tomate",
-      "volumen_kg": 900,
+      "cantidad_kg": 900,
       "madurez": "maduro",
-      "ubicacion": "Marinilla, Antioquia"
+      "ubicacion": "Rocafuerte, Manabí, Ecuador",
+      "horas_limite": 24,
+      "tiene_transporte": false,
+      "precio_minimo_kg": 0.25
     }
   }
 }

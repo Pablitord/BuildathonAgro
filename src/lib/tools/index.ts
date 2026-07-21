@@ -46,12 +46,12 @@ export function extraerLoteLocal(texto: string, equivalenciaKgPorUnidad?: number
   const variableUnit = convertirAKg(1, unidad) === null;
   const cantidad_kg = cantidad > 0 ? (variableUnit ? (equivalenciaKgPorUnidad ? cantidad * equivalenciaKgPorUnidad : null) : convertirAKg(cantidad, unidad)) : null;
   const missing = [cantidad <= 0 && "cantidad y unidad", !cantidad_kg && "peso aproximado por unidad"].filter(Boolean) as string[];
-  const location = texto.match(/\ben\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:[.,]|\s+(?:tengo|quiero|mi precio)|$)/i)?.[1]?.trim() ?? null;
+  const location = texto.match(/productora de\s+([^\n.]+?)\.\s*tengo/i)?.[1]?.trim() ?? texto.match(/(?:\ben|productora de)\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:[.,]|\s+(?:tengo|quiero|mi precio)|$)/i)?.[1]?.trim() ?? null;
   const normalized = normalizarTexto(texto);
   const priceMatch = normalized.match(/(?:precio minimo(?: es| de)?|minimo(?: es| de)?)\s*\$?\s*(\d+(?:[.,]\d+)?)(?:\s*centavos?)?/);
   const precio = priceMatch ? Number(priceMatch[1].replace(",", ".")) * (priceMatch[0].includes("centavo") ? 0.01 : 1) : null;
   const plazo = /\bhoy\b/.test(normalized) ? "hoy" : /\bmanana\b/.test(normalized) ? "mañana" : /(?:dos|2) dias/.test(normalized) ? "dos días" : /(?:tres|3) dias/.test(normalized) ? "tres días" : /esta semana/.test(normalized) ? "esta semana" : null;
-  const horas = plazo === "hoy" ? 24 : plazo === "mañana" ? 48 : plazo === "dos días" ? 48 : plazo === "tres días" ? 72 : plazo === "esta semana" ? 168 : null;
+  const horas = plazo === "hoy" ? 24 : plazo === "mañana" ? 24 : plazo === "dos días" ? 48 : plazo === "tres días" ? 72 : plazo === "esta semana" ? 168 : null;
   const transporte = /no tengo transporte/.test(normalized) ? false : /tengo transporte|con transporte/.test(normalized) ? true : null;
   const calidad: Harvest["calidad"] = /fermentad|primera/.test(normalized) ? "primera" : /segunda/.test(normalized) ? "segunda" : /mixta/.test(normalized) ? "mixta" : /procesamiento/.test(normalized) ? "procesamiento" : "desconocida";
   const almacenamiento = /refrigerad|frio|bodega|almacen/.test(normalized) ? "Declarado por productor" : null;

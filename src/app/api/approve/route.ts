@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ApproveRequestSchema } from "@/lib/schemas";
-import { aprobarOperacion } from "@/lib/agent";
+import { aprobarOperacionActual } from "@/lib/serverless-operations";
 
 export async function POST(request: Request) {
   try {
@@ -13,10 +13,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const operacion = aprobarOperacion(
-      parsed.data.operacion_id,
-      parsed.data.aprobar,
-    );
+    const operacion = aprobarOperacionActual(parsed.data.operacion, parsed.data.aprobar);
     return NextResponse.json({ operacion });
   } catch (error) {
     console.error(error);

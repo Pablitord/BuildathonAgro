@@ -207,11 +207,11 @@ export const PlanRequestSchema = z.object({
 });
 
 export const ReplanRequestSchema = z.object({
-  operacion_id: z.string(),
+  operacion: OperacionSchema,
   comprador_id: z.string(),
 });
 
 export const ApproveRequestSchema = z.object({
-  operacion_id: z.string(),
+  operacion: OperacionSchema,
   aprobar: z.boolean(),
 });
