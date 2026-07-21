@@ -42,6 +42,7 @@ export const HarvestSchema = z.object({
   madurez: MadurezSchema,
   calidad: CalidadSchema,
   horas_limite: z.number().positive().nullable(),
+  plazo_declarado: z.string().nullable().optional().default(null),
   tiene_transporte: z.boolean().nullable(),
   precio_minimo_kg: z.number().nonnegative().nullable(),
   almacenamiento: z.string().nullable(),
@@ -201,6 +202,8 @@ export const HarvestInterpretationSchema = HarvestSchema;
 export const PlanRequestSchema = z.object({
   texto: z.string().min(5),
   equivalencia_kg_por_unidad: z.number().positive().optional(),
+  operacion_id: z.string().optional(),
+  datos_complementarios: z.string().optional(),
 });
 
 export const ReplanRequestSchema = z.object({

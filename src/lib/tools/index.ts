@@ -46,8 +46,16 @@ export function extraerLoteLocal(texto: string, equivalenciaKgPorUnidad?: number
   const variableUnit = convertirAKg(1, unidad) === null;
   const cantidad_kg = cantidad > 0 ? (variableUnit ? (equivalenciaKgPorUnidad ? cantidad * equivalenciaKgPorUnidad : null) : convertirAKg(cantidad, unidad)) : null;
   const missing = [cantidad <= 0 && "cantidad y unidad", !cantidad_kg && "peso aproximado por unidad"].filter(Boolean) as string[];
-  const location = texto.match(/\ben\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:[.,]|$)/)?.[1]?.trim() ?? null;
-  return { productor: texto.match(/(?:soy|me llamo)\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:\s+(?:y|de|en)|[.,]|$)/i)?.[1]?.trim() ?? null, producto_original: product.original, producto_canonico: product.producto, categoria: product.categoria, cantidad: cantidad || 1, unidad_original: unidad, cantidad_kg, ubicacion: location, madurez, calidad: "desconocida", horas_limite: null, tiene_transporte: null, precio_minimo_kg: null, almacenamiento: null, perecibilidad_orientativa: "desconocida", datos_faltantes: missing, requiere_aclaracion: missing.length > 0, preguntas: !cantidad_kg ? ["¿Cuánto pesa aproximadamente cada unidad y en qué ciudad se encuentra la cosecha?"] : [], equivalencia_estimada: false, nota_equivalencia: null };
+  const location = texto.match(/\ben\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:[.,]|\s+(?:tengo|quiero|mi precio)|$)/i)?.[1]?.trim() ?? null;
+  const normalized = normalizarTexto(texto);
+  const priceMatch = normalized.match(/(?:precio minimo(?: es| de)?|minimo(?: es| de)?)\s*\$?\s*(\d+(?:[.,]\d+)?)(?:\s*centavos?)?/);
+  const precio = priceMatch ? Number(priceMatch[1].replace(",", ".")) * (priceMatch[0].includes("centavo") ? 0.01 : 1) : null;
+  const plazo = /\bhoy\b/.test(normalized) ? "hoy" : /\bmanana\b/.test(normalized) ? "mañana" : /(?:dos|2) dias/.test(normalized) ? "dos días" : /(?:tres|3) dias/.test(normalized) ? "tres días" : /esta semana/.test(normalized) ? "esta semana" : null;
+  const horas = plazo === "hoy" ? 24 : plazo === "mañana" ? 48 : plazo === "dos días" ? 48 : plazo === "tres días" ? 72 : plazo === "esta semana" ? 168 : null;
+  const transporte = /no tengo transporte/.test(normalized) ? false : /tengo transporte|con transporte/.test(normalized) ? true : null;
+  const calidad: Harvest["calidad"] = /fermentad|primera/.test(normalized) ? "primera" : /segunda/.test(normalized) ? "segunda" : /mixta/.test(normalized) ? "mixta" : /procesamiento/.test(normalized) ? "procesamiento" : "desconocida";
+  const almacenamiento = /refrigerad|frio|bodega|almacen/.test(normalized) ? "Declarado por productor" : null;
+  return { productor: texto.match(/(?:soy|me llamo)\s+([A-Za-zÁÉÍÓÚÑáéíóúñ ]+?)(?:\s+(?:y|de|en)|[.,]|$)/i)?.[1]?.trim() ?? null, producto_original: product.original, producto_canonico: product.producto, categoria: product.categoria, cantidad: cantidad || 1, unidad_original: unidad, cantidad_kg, ubicacion: location, madurez, calidad, horas_limite: horas, plazo_declarado: plazo, tiene_transporte: transporte, precio_minimo_kg: precio, almacenamiento, perecibilidad_orientativa: "desconocida", datos_faltantes: missing, requiere_aclaracion: missing.length > 0, preguntas: !cantidad_kg ? [location ? "¿Cuánto pesa aproximadamente cada unidad?" : "¿Cuánto pesa aproximadamente cada unidad y en qué ciudad se encuentra la cosecha?"] : [], equivalencia_estimada: false, nota_equivalencia: null };
 }
 
 export function calcularUrgencia(lote: Harvest): Urgencia {
@@ -56,7 +64,8 @@ export function calcularUrgencia(lote: Harvest): Urgencia {
   const factor = lote.madurez === "muy_maduro" ? 0.25 : lote.madurez === "maduro" ? 0.55 : lote.madurez === "seco" ? 1.8 : 1;
   const hours = Math.max(1, Math.round(base * factor));
   const level = hours <= 18 ? "critica" : hours <= 72 ? "prioritaria" : "normal";
-  return { nivel: level, score: level === "critica" ? 95 : level === "prioritaria" ? 70 : 30, horas_estimadas: hours, factores: [`Categoría ${lote.categoria}`, `Madurez ${lote.madurez}`, lote.horas_limite ? "Límite declarado" : "Perecibilidad orientativa"], justificacion: `Ventana estimada de ${hours} horas según categoría y estado declarado.` };
+  const justificacion = lote.horas_limite ? `Atención ${level === "critica" ? "crítica" : "prioritaria"} durante las próximas ${lote.horas_limite} horas.` : level === "normal" ? "Venta programada. Sin fecha límite crítica declarada." : "Atención prioritaria según las características declaradas del producto.";
+  return { nivel: level, score: level === "critica" ? 95 : level === "prioritaria" ? 70 : 30, horas_estimadas: hours, factores: [`Categoría ${lote.categoria}`, `Madurez ${lote.madurez}`, lote.horas_limite ? "Plazo declarado" : "Sin fecha límite crítica declarada"], justificacion };
 }
 
 export function getBuyers(): Comprador[] { return buyersData.compradores as unknown as Comprador[]; }

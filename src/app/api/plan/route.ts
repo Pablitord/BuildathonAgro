@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PlanRequestSchema } from "@/lib/schemas";
-import { crearPlan } from "@/lib/agent";
+import { completarInformacion, crearPlan } from "@/lib/agent";
 
 export async function POST(request: Request) {
   try {
@@ -13,10 +13,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const operacion = await crearPlan(
-      parsed.data.texto,
-      parsed.data.equivalencia_kg_por_unidad,
-    );
+    const operacion = parsed.data.operacion_id
+      ? await completarInformacion(parsed.data.operacion_id, parsed.data.datos_complementarios ?? "", parsed.data.equivalencia_kg_por_unidad)
+      : await crearPlan(parsed.data.texto, parsed.data.equivalencia_kg_por_unidad);
     return NextResponse.json({ operacion });
   } catch (error) {
     console.error(error);
