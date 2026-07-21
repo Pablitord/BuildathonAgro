@@ -1,0 +1,252 @@
+{
+  "etiqueta": "DATOS SIMULADOS — requiere validación real",
+  "compradores": [
+    {
+      "id": "BUY-001",
+      "nombre": "Procesadora Manabita",
+      "tipo": "procesadora",
+      "productos_aceptados": ["tomate", "papaya", "limon", "cacao"],
+      "categorias_aceptadas": ["fruta", "hortaliza", "cacao_cafe"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta", "procesamiento"],
+      "capacidad_kg": 800,
+      "precio_por_producto": {
+        "tomate": 0.28,
+        "papaya": 0.22,
+        "limon": 0.35,
+        "cacao": 2.4
+      },
+      "precio_referencia_categoria": 0.2,
+      "recoge_en_finca": true,
+      "ubicacion": "Portoviejo",
+      "distancia_km": 15,
+      "horas_confirmacion": 4,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-002",
+      "nombre": "Mercado Mayorista Calceta",
+      "tipo": "mercado_mayorista",
+      "productos_aceptados": ["yuca", "maiz", "platano", "papa"],
+      "categorias_aceptadas": ["tuberculo", "cereal", "fruta"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta"],
+      "capacidad_kg": 2000,
+      "precio_por_producto": {
+        "yuca": 0.18,
+        "maiz": 0.32,
+        "platano": 0.25,
+        "papa": 0.3
+      },
+      "precio_referencia_categoria": 0.22,
+      "recoge_en_finca": false,
+      "ubicacion": "Calceta",
+      "distancia_km": 8,
+      "horas_confirmacion": 6,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-003",
+      "nombre": "Cooperativa Cacaotera Chone",
+      "tipo": "cooperativa",
+      "productos_aceptados": ["cacao", "cafe"],
+      "categorias_aceptadas": ["cacao_cafe"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta", "procesamiento"],
+      "capacidad_kg": 1500,
+      "precio_por_producto": {
+        "cacao": 2.8,
+        "cafe": 3.1
+      },
+      "precio_referencia_categoria": 2.5,
+      "recoge_en_finca": true,
+      "ubicacion": "Chone",
+      "distancia_km": 12,
+      "horas_confirmacion": 8,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-004",
+      "nombre": "Hotel Costa Verde",
+      "tipo": "restaurante_hotel",
+      "productos_aceptados": ["limon", "papaya", "pescado", "platano", "tomate"],
+      "categorias_aceptadas": ["fruta", "hortaliza", "pesca_artesanal"],
+      "calidades_aceptadas": ["primera"],
+      "capacidad_kg": 150,
+      "precio_por_producto": {
+        "limon": 0.55,
+        "papaya": 0.4,
+        "pescado": 3.5,
+        "platano": 0.45,
+        "tomate": 0.5
+      },
+      "precio_referencia_categoria": 0.4,
+      "recoge_en_finca": false,
+      "ubicacion": "Bahía de Caráquez",
+      "distancia_km": 28,
+      "horas_confirmacion": 3,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-005",
+      "nombre": "Mercado Minorista Portoviejo",
+      "tipo": "mercado_minorista",
+      "productos_aceptados": ["tomate", "limon", "platano", "papaya", "yuca"],
+      "categorias_aceptadas": ["fruta", "hortaliza", "tuberculo"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta"],
+      "capacidad_kg": 400,
+      "precio_por_producto": {
+        "tomate": 0.4,
+        "limon": 0.45,
+        "platano": 0.35,
+        "papaya": 0.3,
+        "yuca": 0.25
+      },
+      "precio_referencia_categoria": 0.28,
+      "recoge_en_finca": false,
+      "ubicacion": "Portoviejo",
+      "distancia_km": 5,
+      "horas_confirmacion": 2,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-006",
+      "nombre": "Molino Cereales Manabí",
+      "tipo": "procesadora",
+      "productos_aceptados": ["maiz", "arroz"],
+      "categorias_aceptadas": ["cereal"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta", "procesamiento"],
+      "capacidad_kg": 5000,
+      "precio_por_producto": {
+        "maiz": 0.35,
+        "arroz": 0.42
+      },
+      "precio_referencia_categoria": 0.3,
+      "recoge_en_finca": true,
+      "ubicacion": "Chone",
+      "distancia_km": 10,
+      "horas_confirmacion": 12,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-007",
+      "nombre": "Banco de Alimentos Manabí",
+      "tipo": "comedor_banco_alimentos",
+      "productos_aceptados": [],
+      "categorias_aceptadas": [
+        "fruta",
+        "hortaliza",
+        "tuberculo",
+        "cereal",
+        "leguminosa"
+      ],
+      "calidades_aceptadas": ["segunda", "mixta", "procesamiento"],
+      "capacidad_kg": 1000,
+      "precio_por_producto": {},
+      "precio_referencia_categoria": 0.08,
+      "recoge_en_finca": true,
+      "ubicacion": "Portoviejo",
+      "distancia_km": 18,
+      "horas_confirmacion": 24,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-008",
+      "nombre": "Alimentación Animal Costa",
+      "tipo": "alimentacion_animal",
+      "productos_aceptados": ["maiz", "yuca"],
+      "categorias_aceptadas": ["cereal", "tuberculo"],
+      "calidades_aceptadas": ["procesamiento", "segunda", "mixta"],
+      "capacidad_kg": 3000,
+      "precio_por_producto": {
+        "maiz": 0.15,
+        "yuca": 0.1
+      },
+      "precio_referencia_categoria": 0.1,
+      "recoge_en_finca": true,
+      "ubicacion": "Rocafuerte",
+      "distancia_km": 22,
+      "horas_confirmacion": 16,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-009",
+      "nombre": "Compostaje Municipal",
+      "tipo": "compostaje",
+      "productos_aceptados": [],
+      "categorias_aceptadas": [
+        "fruta",
+        "hortaliza",
+        "tuberculo",
+        "otro"
+      ],
+      "calidades_aceptadas": ["procesamiento", "segunda", "mixta"],
+      "capacidad_kg": 5000,
+      "precio_por_producto": {},
+      "precio_referencia_categoria": 0.02,
+      "recoge_en_finca": true,
+      "ubicacion": "Portoviejo",
+      "distancia_km": 30,
+      "horas_confirmacion": 48,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — última alternativa — requiere validación real"
+    },
+    {
+      "id": "BUY-010",
+      "nombre": "Frutas Tropicales Export",
+      "tipo": "exportacion",
+      "productos_aceptados": ["pitahaya", "pitahaya amarilla", "mango", "papaya"],
+      "categorias_aceptadas": ["fruta"],
+      "calidades_aceptadas": ["primera"],
+      "capacidad_kg": 600,
+      "precio_por_producto": {
+        "pitahaya": 1.8,
+        "pitahaya amarilla": 2.0,
+        "mango": 0.6,
+        "papaya": 0.35
+      },
+      "precio_referencia_categoria": 0.5,
+      "recoge_en_finca": false,
+      "ubicacion": "Manta",
+      "distancia_km": 40,
+      "horas_confirmacion": 10,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    },
+    {
+      "id": "BUY-011",
+      "nombre": "Pescadería Artesanal Bahía",
+      "tipo": "mercado_minorista",
+      "productos_aceptados": ["pescado"],
+      "categorias_aceptadas": ["pesca_artesanal"],
+      "calidades_aceptadas": ["primera", "segunda", "mixta"],
+      "capacidad_kg": 250,
+      "precio_por_producto": {
+        "pescado": 3.2
+      },
+      "precio_referencia_categoria": 2.8,
+      "recoge_en_finca": false,
+      "ubicacion": "Bahía de Caráquez",
+      "distancia_km": 25,
+      "horas_confirmacion": 2,
+      "es_simulado": true,
+      "disponible": true,
+      "etiqueta": "SIMULADO — requiere validación real"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "caso_maria": {
+    "productora": "María González",
+    "texto": "Hola, soy María González de la finca El Roble en Marinilla, Antioquia. Acabo de cosechar 900 kg de tomate maduro listo para venta. Necesito moverlos rápido porque maduran en menos de un día.",
+    "esperado": {
+      "producto": "tomate",
+      "volumen_kg": 900,
+      "madurez": "maduro",
+      "ubicacion": "Marinilla, Antioquia"
+    }
+  }
+}

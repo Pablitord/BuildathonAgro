@@ -1,0 +1,29 @@
+{
+  "etiqueta": "DATOS SIMULADOS",
+  "costos": {
+    "transporte_por_km_por_kg": 0.002,
+    "comision_porcentaje": 0.05,
+    "empaque_por_kg": 0.02,
+    "manejo_por_kg": 0.015
+  },
+  "perecibilidad_categoria": {
+    "fruta": 36,
+    "hortaliza": 48,
+    "tuberculo": 120,
+    "cereal": 720,
+    "leguminosa": 720,
+    "cacao_cafe": 1440,
+    "pesca_artesanal": 12,
+    "producto_procesado": 240,
+    "otro": 72
+  },
+  "factor_madurez": {
+    "verde": 1.4,
+    "pinton": 1.0,
+    "maduro": 0.55,
+    "muy_maduro": 0.25,
+    "seco": 1.8,
+    "no_aplica": 1.0,
+    "desconocido": 0.8
+  }
+}
